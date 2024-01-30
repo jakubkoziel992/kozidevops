@@ -2,11 +2,12 @@ package org.example;
 
 public class Monitor {
     private final String name;
-    private int width = 3840;
-    private int height = 1920;
+    private int width;
+    private int height;
 
     public Monitor(String name) {
         this.name = name;
+        setHightResolution();
     }
 
     public void setHightResolution(){
