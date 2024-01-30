@@ -1,4 +1,4 @@
-package org.example;
+package pl.java_application;
 
 public class Monitor {
     private final String name;
