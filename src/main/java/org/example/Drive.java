@@ -13,4 +13,14 @@ public class Drive {
     public Drive(String type) {
         this.type = type;
     }
+
+    public void addFile(File file){
+        if (type.equals("HDD")){
+            hddFiles.add(file);
+        } else if (type.equals("SSD")){
+            ssdFiles.put(file.toString(),file);
+        }
+    }
+
+    
 }
