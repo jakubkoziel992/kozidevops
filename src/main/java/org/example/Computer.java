@@ -39,5 +39,16 @@ public class Computer {
     public void setHeadphones(Headphones headphones) {
         this.headphones = headphones;
     }
-    
+
+    public List<USBDevice> getUsbDevices() {
+        return usbDevices;
+    }
+
+    public void addUSBDevice(USBDevice usbDevice){
+        usbDevices.add(usbDevice);
+    }
+
+    public void removeUSBDevice(USBDevice usbDevice){
+        usbDevices.remove(usbDevice);
+    }
 }
