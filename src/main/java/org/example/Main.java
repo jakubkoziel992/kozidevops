@@ -3,9 +3,10 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         Monitor monitor = new Monitor("Dell");
-        System.out.println(monitor.getResolution());
+        HDDDrive hddDrive = new HDDDrive();
 
-        monitor.setLowResolution();
-        System.out.println(monitor.getResolution());
+        Computer computer = new Computer(monitor, hddDrive);
+        hddDrive.addFile(new File("photo.jpg"));
+        hddDrive.listFiles();
     }
 }
