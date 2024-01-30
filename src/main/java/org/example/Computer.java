@@ -51,4 +51,12 @@ public class Computer {
     public void removeUSBDevice(USBDevice usbDevice){
         usbDevices.remove(usbDevice);
     }
+
+    public void addFile(File file){
+        drive.addFile(file);
+    }
+
+    public void listFiles(){
+        drive.listFiles();
+    }
 }
