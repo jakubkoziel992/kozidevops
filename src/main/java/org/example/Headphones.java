@@ -1,4 +1,4 @@
 package org.example;
 
-public class Headphones {
+public record Headphones(String name) {
 }
