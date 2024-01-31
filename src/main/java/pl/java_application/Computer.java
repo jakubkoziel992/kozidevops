@@ -2,6 +2,7 @@ package pl.java_application;
 
 
 import pl.java_application.drive.Drive;
+import pl.java_application.usbdevice.USBDevice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +48,24 @@ public class Computer {
     }
 
     public void addUSBDevice(USBDevice usbDevice){
-        usbDevices.add(usbDevice);
+        boolean isConnected = usbDevice.connect();
+
+        if (isConnected){
+            usbDevices.add(usbDevice);
+        }
+
+
     }
 
     public void removeUSBDevice(USBDevice usbDevice){
+        boolean isDisconnected = usbDevice.disconnect();
+
+        if (!isDisconnected){
+            System.out.println("USB Device forcefully disconnected");
+        }
         usbDevices.remove(usbDevice);
+
+
     }
 
     public void addFile(File file){
