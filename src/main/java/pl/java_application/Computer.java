@@ -2,6 +2,7 @@ package pl.java_application;
 
 
 import pl.java_application.drive.Drive;
+import pl.java_application.file.File;
 import pl.java_application.usbdevice.USBDevice;
 
 import java.util.ArrayList;
