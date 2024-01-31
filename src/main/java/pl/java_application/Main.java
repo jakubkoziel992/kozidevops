@@ -20,9 +20,34 @@ public class Main {
 
         Computer computer = new Computer(monitor, ssdDrive);
 
+
+        Mouse mouse = new Mouse("Mysz");
+        MemoryStick memoryStick = new MemoryStick("Pendrive");
+
+        // connect new devces
+        computer.addUSBDevice(mouse);
+        computer.addUSBDevice(memoryStick);
+
+        // disconect device - mouse
+        computer.removeUSBDevice(mouse);
+
+        //list all connected devices
+
+        List<USBDevice> usbDevices = computer.getUsbDevices();
+
+        System.out.println();
+        System.out.println("Connected devices: ");
+        for (USBDevice device: usbDevices){
+            System.out.println(device.getName());
+        }
+        System.out.println();
+        //
+        memoryStick.eject();
+        computer.removeUSBDevice(memoryStick);
+
+
         MP3File mp3File = new MP3File("audio.mp3", 4000,
                 "Rammstein", "Sonne", 100);
-
         GIFImageFile gifImageFile = new GIFImageFile("funnydig.git", 150);
         JPGImageFile jpgImageFile = new JPGImageFile("photo.jpg", 400, 80);
 
@@ -33,27 +58,8 @@ public class Main {
         computer.listFiles();
         File file = computer.findFile("audio.mp3");
         System.out.println(file.getName());
-        System.out.println(file);
-
-        //computer.addFile(new File("file.png"));
-        //computer.listFiles();
-
-       // Mouse mouse = new Mouse("Mysz");
-       // MemoryStick memoryStick = new MemoryStick("Pendrive");
-
-        //computer.addUSBDevice(mouse);
-        //computer.addUSBDevice(memoryStick);
-
-       // computer.removeUSBDevice(mouse);
-/*
-        List<USBDevice> usbDevices = computer.getUsbDevices();
-
-        for (USBDevice device: usbDevices){
-            System.out.println(device.getName());
-        }
-*/
-       // memoryStick.eject();
-       // computer.removeUSBDevice(memoryStick);
+        System.out.println(file.getSize());
+        System.out.println(file.getType());
 
 
 
