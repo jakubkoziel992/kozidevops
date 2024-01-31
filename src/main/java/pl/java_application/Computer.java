@@ -76,4 +76,8 @@ public class Computer {
     public void listFiles(){
         drive.listFiles();
     }
+
+    public File findFile(String fileName){
+        return drive.findFile(fileName);
+    }
 }
