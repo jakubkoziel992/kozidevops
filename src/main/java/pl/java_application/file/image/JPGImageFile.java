@@ -7,8 +7,7 @@ public class JPGImageFile implements File {
     private final String name;
     private final int size;
     private final int compression;
-
-
+    
     public JPGImageFile(String name, int size, int compression) {
         this.name = name;
         this.size = size;
