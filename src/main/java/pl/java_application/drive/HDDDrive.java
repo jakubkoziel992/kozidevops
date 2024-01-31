@@ -18,4 +18,14 @@ public class HDDDrive implements  Drive{
             System.out.println(file.getName());
         }
     }
+
+    @Override
+    public File findFile(String fileName) {
+        for (File file: files){
+            if (fileName.equals(file.getName())) {
+                return file;
+            }
+        }
+        return null;
+    }
 }

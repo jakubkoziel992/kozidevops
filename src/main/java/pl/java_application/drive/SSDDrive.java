@@ -22,4 +22,9 @@ public class SSDDrive implements Drive {
         }
 
     }
+
+    @Override
+    public File findFile(String fileName) {
+        return files.get(fileName);
+    }
 }
