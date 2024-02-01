@@ -1,7 +1,11 @@
-FROM openjdk:23
+FROM eclipse-temurin:21.0.2_13-jre
 
-WORKDIR /app/src/
-COPY out/artifacts/oop_projekt_jar/oop-projekt.jar .
+WORKDIR /deployments
 
-CMD ["java", "-jar", "oop-projekt.jar"] 
+COPY target/oop-projekt-1.0-SNAPSHOT.jar .
+
+CMD ["java", "-cp", "oop-projekt-1.0-SNAPSHOT.jar", "pl.java_application.Main"]
+
+
+
 
