@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21.0.2_13-jdk
+FROM eclipse-temurin:21.0.2_13-jdk AS builder
 
 WORKDIR /deployments
 
@@ -8,7 +8,11 @@ COPY . .
 
 RUN mvn clean package
 
-CMD ["java", "-cp", "target/oop-projekt-1.0-SNAPSHOT.jar", "pl.java_application.Main"]
+FROM eclipse-temurin:21.0.2_13-jdk AS runner
+
+COPY --from=builder /deployments/target/oop-projekt-1.0-SNAPSHOT.jar .
+
+CMD ["java", "-cp", "oop-projekt-1.0-SNAPSHOT.jar", "pl.java_application.Main"]
 
 
 
