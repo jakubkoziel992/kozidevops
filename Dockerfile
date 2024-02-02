@@ -1,14 +1,14 @@
-FROM eclipse-temurin:21.0.2_13-jdk AS builder
+FROM maven:3.9-eclipse-temurin-21-alpine AS builder
 
 WORKDIR /deployments
 
-RUN apt-get update && apt-get install maven -y
+#RUN apt-get update && apt-get install maven -y
 
 COPY . .
 
 RUN mvn clean package
 
-FROM eclipse-temurin:21.0.2_13-jdk AS runner
+FROM eclipse-temurin:21.0.2_13-jre-alpine AS runner
 
 COPY --from=builder /deployments/target/oop-projekt-1.0-SNAPSHOT.jar .
 
