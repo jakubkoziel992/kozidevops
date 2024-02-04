@@ -2,7 +2,6 @@ FROM maven:3.9-eclipse-temurin-21-alpine AS builder
 
 WORKDIR /deployments
 
-#RUN apt-get update && apt-get install maven -y
 
 COPY . .
 
@@ -10,8 +9,7 @@ RUN mvn clean package
 
 FROM eclipse-temurin:21.0.2_13-jre-alpine AS runner
 
-RUN apk update && apk add --no-cache bash \
-&& addgroup -g 500 myjavaapp &&  adduser -D  -u 501 -G myjavaapp myjavaapp
+RUN addgroup -g 500 myjavaapp &&  adduser -D  -u 501 -G myjavaapp myjavaapp
 
 USER myjavaapp:myjavaapp
 
