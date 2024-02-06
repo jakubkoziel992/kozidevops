@@ -2,7 +2,7 @@ version : '3.7'
 
 services:
   app:
-    build:
-      context: ./app
-      dockerfile: Dockerfile
+    build: ./app
+    image: kozijakinfo/java_app:5.0
+      
     
