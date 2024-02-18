@@ -1,1 +1,1 @@
-java_computer
+Using Jenkins for simple Java application
