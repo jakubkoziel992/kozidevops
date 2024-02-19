@@ -1,3 +1,4 @@
+
 pipeline{
 	agent any
 	tools {
@@ -6,9 +7,17 @@ pipeline{
 	}
 	
 	stages {
+		stage("Show Build number"){
+			steps{
+				echo "The build ID is: ${env.BUILD_ID} "
+				echo "The build number is: ${env.BUILD_NUMBER}"
+			}
+		}
+	
+	
 		stage("Fetch Code"){
 			steps{
-				echo "Fetching..."
+				git url: 'https://github.com/jakubkoziel992/kozidevops.git', branch: 'master'
 			}
 		}
 	}
