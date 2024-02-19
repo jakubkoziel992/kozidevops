@@ -1,4 +1,3 @@
-
 pipeline{
 	agent any
 	tools {
@@ -20,5 +19,15 @@ pipeline{
 				git url: 'https://github.com/jakubkoziel992/kozidevops.git', branch: 'master'
 			}
 		}
+		
+		stage ("Build") {
+			steps {
+				sh '''
+					cd app
+					mvn clean package
+				   '''
+			}
+		}
 	}
 }
+
