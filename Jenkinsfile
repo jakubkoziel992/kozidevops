@@ -9,7 +9,6 @@ pipeline{
 		stage("Show Build number"){
 			steps{
 				echo "The build ID is: ${env.BUILD_ID} "
-				echo "The build number is: ${env.BUILD_NUMBER}"
 			}
 		}
 	
@@ -25,6 +24,16 @@ pipeline{
 				sh '''
 					cd app
 					mvn clean package
+				   '''
+			}
+		}
+
+
+		stage ("UNIT test"){
+			steps {
+				sh '''
+					cd app
+					mvn test
 				   '''
 			}
 		}
