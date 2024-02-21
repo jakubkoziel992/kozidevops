@@ -26,17 +26,22 @@ pipeline{
 					mvn clean package
 				   '''
 			}
+			
+			post{
+				success{
+					echo 'Archiving artifacts now.'
+					archiveArtifacts artifacts: '**/*.jar' 
+				}
+			}
 		}
-
-
+		
 		stage ("UNIT test"){
 			steps {
 				sh '''
 					cd app
 					mvn test
-				   '''
+					'''
 			}
 		}
 	}
 }
-
