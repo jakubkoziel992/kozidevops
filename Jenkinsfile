@@ -43,5 +43,14 @@ pipeline{
 					'''
 			}
 		}
+
+		stage ("Checkstyle Analysis){
+			steps{
+				sh '''
+					cd app
+					mvn checkstyle:checkstyle
+				   '''
+			}
+		}
 	}
 }
