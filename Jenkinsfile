@@ -4,15 +4,7 @@ pipeline{
 		maven "MAVEN3"
 		jdk "OracleJDK21"
 	}
-	
-	stages {
-		stage("Show Build number"){
-			steps{
-				echo "The build ID is: ${env.BUILD_ID} "
-			}
-		}
-	
-	
+	stages{
 		stage("Fetch Code"){
 			steps{
 				git url: 'https://github.com/jakubkoziel992/kozidevops.git', branch: 'master'
@@ -60,11 +52,12 @@ pipeline{
 			steps{
 				withSonarQubeEnv('SONAR'){
 					sh '''${scannerHome}/bin/sonar-scanner \
-					-Dsonar.projectKey=oop-projekt
+					-Dsonar.projectKey=app
 					-Dsonar.sources=./app
 					'''
 				}
 			}
-		}
+		}	
+
 	}
 }
