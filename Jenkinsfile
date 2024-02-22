@@ -44,7 +44,7 @@ pipeline{
 			}
 		}
 
-		stage ("Checkstyle Analysis){
+		stage ("Checkstyle Analysis"{
 			steps{
 				sh '''
 					cd app
