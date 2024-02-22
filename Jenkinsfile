@@ -43,13 +43,27 @@ pipeline{
 					'''
 			}
 		}
-
+		
 		stage ("Checkstyle Analysis"){
 			steps{
 				sh '''
 					cd app
 					mvn checkstyle:checkstyle
 				   '''
+			}
+		}
+		
+		stage ('SonarQube analysis'){
+			environment {
+                scannerHome = tool 'SonarScanner5.0.1'
+            }
+			steps{
+				withSonarQubeEnv('SONAR'){
+					sh '''${scannerHome}/bin/sonar-scanner \
+					-Dsonar.projectKey=oop-projekt
+					-Dsonar.sources=./app
+					'''
+				}
 			}
 		}
 	}
