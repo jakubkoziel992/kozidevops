@@ -55,8 +55,8 @@ pipeline{
 					-Dsonar.projectKey=kozidevops \
 					-Dsonar.projectName=kozidevops \
 					-Dsonar.sources=app/src/ \
-					-Dsonar.java.binaries=app/target/
-					'''
+					-Dsonar.java.binaries=app/target/ 							  
+					-Dsonar.java.checkstyle.reportPath=app/target/checkstyle-result.xml'''
 				}
 			}
 		}	
