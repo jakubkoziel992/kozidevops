@@ -52,8 +52,10 @@ pipeline{
 			steps{
 				withSonarQubeEnv('SONAR'){
 					sh '''${scannerHome}/bin/sonar-scanner \
-					-Dsonar.projectKey=app
-					-Dsonar.sources=./app
+					-Dsonar.projectKey=kozidevops \
+					-Dsonar.projectName=kozidevops \
+					-Dsonar.sources=app/src/ \
+					-Dsonar.java.binaries=app/target/
 					'''
 				}
 			}
