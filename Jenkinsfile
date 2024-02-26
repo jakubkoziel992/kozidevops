@@ -69,6 +69,27 @@ pipeline{
 				}
 			}
 		}
+		
+		stage("Upload Artifact"){
+			steps {
+				nexusArtifactUploader(
+					nexusVersion: "nexus3",
+					protocol: "http",
+					nexusUrl: "172.31.87.210:8081",
+					groupId: "test",
+					version: "1.1",
+					repository: "kozidevops-repo",
+					credentialsId: "NexusLogin",
+					artifacts:[
+						[artifactId: "kozidevops",
+						type: "jar",
+						classifier: '',
+						file: "app/target/oop-projekt-1.0-SNAPSHOT.jar"]
+					] 
+					
+				)
+			}
+		}
 
 	}
 }
