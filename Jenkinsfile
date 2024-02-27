@@ -86,7 +86,6 @@ pipeline{
 						classifier: '',
 						file: "app/target/oop-projekt-1.0-SNAPSHOT.jar"]
 					] 
-					
 				)
 			}
 		}
