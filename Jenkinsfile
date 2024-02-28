@@ -94,10 +94,10 @@ pipeline{
 		}	
 		post {
 			success {
-				discordSend title: "Jenkins Pipeline Build", description: "Build Success - ${currentBuild.currentResult}", link: env.BUILD_URL, webhookURL: "https://discord.com/api/webhooks/1212030758491791441/cbslVZblFjHGCJFCMArTjyJgUmrUoXmkIze8c5lD2R9TeCZy2D2JFpxpv0ElJnMPUWJI"
+				discordSend title: "Jenkins Pipeline Build", description: "${currentBuild.currentResult}: Build ${env.BUILD_NUMBER} More info at: ${env.BUILD_URL}", link: env.BUILD_URL, webhookURL: "https://discord.com/api/webhooks/1212030758491791441/cbslVZblFjHGCJFCMArTjyJgUmrUoXmkIze8c5lD2R9TeCZy2D2JFpxpv0ElJnMPUWJI"
 				}
 			failure {
-				discordSend title: "Jenkins Pipeline Build", description: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} More info ar: ${env.BUILD_URL}", link: env.BUILD_URL, webhookURL: "https://discord.com/api/webhooks/1212030758491791441/cbslVZblFjHGCJFCMArTjyJgUmrUoXmkIze8c5lD2R9TeCZy2D2JFpxpv0ElJnMPUWJI"
+				discordSend title: "Jenkins Pipeline Build", description: "${currentBuild.currentResult}: Build ${env.BUILD_NUMBER} More info at: ${env.BUILD_URL}", link: env.BUILD_URL, webhookURL: "https://discord.com/api/webhooks/1212030758491791441/cbslVZblFjHGCJFCMArTjyJgUmrUoXmkIze8c5lD2R9TeCZy2D2JFpxpv0ElJnMPUWJI"
 				}
 			}
 }
