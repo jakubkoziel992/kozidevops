@@ -76,7 +76,7 @@ pipeline{
 					protocol: "http",
 					nexusUrl: "172.31.87.210:8081",
 					groupId: "test",
-					version: "${env.BUILD_TIMESTAMP} - ${env.BUILD_ID}",
+					version: "${env.BUILD_TIMESTAMP}-${env.BUILD_ID}",
 					repository: "kozidevops-repo",
 					credentialsId: "NexusLogin",
 					artifacts:[
