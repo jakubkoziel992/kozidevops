@@ -1,5 +1,3 @@
-
-
 pipeline{
         agent any
         tools {
@@ -71,33 +69,33 @@ pipeline{
                                 }
                         }
                 }
-
-                stage("Upload Artifact"){
-                        steps {
-                                nexusArtifactUploader(
-                                        nexusVersion: "nexus3",
-                                        protocol: "http",
-                                        nexusUrl: "172.31.87.210:8081",
-                                        groupId: "test",
-                                        version: "${env.BUILD_TIMESTAMP}-${env.BUILD_ID}",
-                                        repository: "kozidevops-repo",
-                                        credentialsId: "NexusLogin",
-                                        artifacts:[
-                                                [artifactId: "kozidevops",
-                                                type: "jar",
-                                                classifier: '',
-                                                file: "app/target/oop-projekt-1.0-SNAPSHOT.jar"]
-                                        ]
-                                )
-                        }
-                }
-		}	
-		post {
-			success {
-				discordSend title: "Jenkins Pipeline Build", description: "${currentBuild.currentResult}: Build ${env.BUILD_NUMBER} More info at: ${env.BUILD_URL}", link: env.BUILD_URL, webhookURL: "https://discord.com/api/webhooks/1212030758491791441/cbslVZblFjHGCJFCMArTjyJgUmrUoXmkIze8c5lD2R9TeCZy2D2JFpxpv0ElJnMPUWJI"
-				}
-			failure {
-				discordSend title: "Jenkins Pipeline Build", description: "${currentBuild.currentResult}: Build ${env.BUILD_NUMBER} More info at: ${env.BUILD_URL}", link: env.BUILD_URL, webhookURL: "https://discord.com/api/webhooks/1212030758491791441/cbslVZblFjHGCJFCMArTjyJgUmrUoXmkIze8c5lD2R9TeCZy2D2JFpxpv0ElJnMPUWJI"
-				}
+		stage("Upload Artifact"){
+			steps {
+				nexusArtifactUploader(
+					nexusVersion: "nexus3",
+					protocol: "http",
+					nexusUrl: "172.31.87.210:8081",
+					groupId: "test",
+					version: "${env.BUILD_TIMESTAMP} - ${env.BUILD_ID}",
+					repository: "kozidevops-repo",
+					credentialsId: "NexusLogin",
+					artifacts:[
+						[artifactId: "kozidevops",
+						type: "jar",
+						classifier: '',
+						file: "app/target/oop-projekt-1.0-SNAPSHOT.jar"]
+					] 
+				)
 			}
+		}
+
+                }
+                post {
+                        success {
+                                discordSend title: "Jenkins Pipeline Build", description: "${currentBuild.currentResult}: Build ${env.BUILD_NUMBER} More info at: ${env.BUILD_URL}", link: env.BUILD_URL, webhookURL: "https://discord.com/api/webhooks/1212030758491791441/cbslVZblFjHGCJFCMArTjyJgUmrUoXmkIze8c5lD2R9TeCZy2D2JFpxpv0ElJnMPUWJI"
+                                }
+                        failure {
+                                discordSend title: "Jenkins Pipeline Build", description: "${currentBuild.currentResult}: Build ${env.BUILD_NUMBER} More info at: ${env.BUILD_URL}", link: env.BUILD_URL, webhookURL: "https://discord.com/api/webhooks/1212030758491791441/cbslVZblFjHGCJFCMArTjyJgUmrUoXmkIze8c5lD2R9TeCZy2D2JFpxpv0ElJnMPUWJI"
+                                }
+                        }
 }
