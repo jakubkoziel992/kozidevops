@@ -94,7 +94,6 @@ pipeline{
 			success {
 				discordSend title: "Jenkins Pipeline Build", description: "Build Success - ${currentBuild.currentResult}", link: env.BUILD_URL, webhookURL: "https://discord.com/api/webhooks/1212030758491791441/cbslVZblFjHGCJFCMArTjyJgUmrUoXmkIze8c5lD2R9TeCZy2D2JFpxpv0ElJnMPUWJI"
 				}
-			
 			failure {
 				discordSend title: "Jenkins Pipeline Build", description: "Build Failed - ${currentBuild.currentResult}", link: env.BUILD_URL, webhookURL: "https://discord.com/api/webhooks/1212030758491791441/cbslVZblFjHGCJFCMArTjyJgUmrUoXmkIze8c5lD2R9TeCZy2D2JFpxpv0ElJnMPUWJI"
 				}
