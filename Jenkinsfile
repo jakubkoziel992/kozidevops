@@ -7,7 +7,7 @@ pipeline{
         stages{
                 stage("Fetch Code"){
                         steps{
-                                git url: 'https://github.com/jakubkoziel992/kozidevops.git', branch: 'master'
+                                git url: 'https://github.com/jakubkoziel992/kozidevops.git', branch: 'docker_ci'
                         }
                 }
 
