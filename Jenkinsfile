@@ -69,13 +69,23 @@ pipeline{
                                 }
                         }
                 }
-				
-				stage ("Build App Image") {
-					steps {
-						script{
-							app = docker.build("320183397498.dkr.ecr.us-east-1.amazonaws.com/kozidevopsregistry:${env.BUILD_ID}"  ,"./app/")
-						}
+
+                stage ("Build App Image") {
+                        steps {
+                                script{
+                                        app = docker.build("320183397498.dkr.ecr.us-east-1.amazonaws.com/kozidevopsregistry:${env.BUILD_ID}"  ,"./app/")
+                                      }
+
+                                }
+                        }
 						
+				stage ("Deploy App Image to ECR"){
+					steps{
+						script {
+							docker.withRegistry("https://320183397498.dkr.ecr.us-east-1.amazonaws.com/kozidevopsregistry","ecr:us-east-1:awscreds"){
+								app.push()
+							}
+						}
 					}
 				}
 
