@@ -73,7 +73,7 @@ pipeline{
 				stage ("Build App Image") {
 					steps {
 						script{
-							docker.build("app:1." + "${env.BUILD_ID}"  ,"./app/")
+							app = docker.build("320183397498.dkr.ecr.us-east-1.amazonaws.com/kozidevopsregistry:${env.BUILD_ID}"  ,"./app/")
 						}
 						
 					}
