@@ -69,6 +69,15 @@ pipeline{
                                 }
                         }
                 }
+				
+				stage ("Build App Image") {
+					steps {
+						script{
+							docker.build("app:1." + "${env.BUILD_ID}"  ,"./app/")
+						}
+						
+					}
+				}
 
                 }
                 post {
