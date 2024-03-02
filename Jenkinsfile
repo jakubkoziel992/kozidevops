@@ -12,36 +12,33 @@ pipeline{
                 }
 
                 stage ("Build") {
-                        steps {
-                                sh '''
-                                        cd app
-                                        mvn clean package
-                                   '''
-                        }
+                    steps {
+						dir("app"){
+							sh 'mvn clean package'
+						}			
+					}
 
-                        post{
-                                success{
-                                        echo 'Archiving artifacts now.'
-                                        archiveArtifacts artifacts: '**/*.jar'
-                                }
-                        }
+					post{
+						success{
+								echo 'Archiving artifacts now.'
+								archiveArtifacts artifacts: '**/*.jar'
+						}
+					}
                 }
 
                 stage ("UNIT test"){
                         steps {
-                                sh '''
-                                        cd app
-                                        mvn test
-                                        '''
+							dir("app"){
+								sh 'mvn test'
+							}		
                         }
                 }
 
                 stage ("Checkstyle Analysis"){
                         steps{
-                                sh '''
-                                        cd app
-                                        mvn checkstyle:checkstyle
-                                   '''
+                            dir("app"){
+								sh 'mvn checkstyle:checkstyle'
+							}    
                         }
                 }
 
@@ -78,16 +75,16 @@ pipeline{
 
                                 }
                         }
-						
-				stage ("Deploy App Image to ECR"){
-					steps{
-						script {
-							docker.withRegistry("https://320183397498.dkr.ecr.us-east-1.amazonaws.com/kozidevopsregistry","ecr:us-east-1:awscreds"){
-								app.push()
-							}
-						}
-					}
-				}
+
+                                stage ("Deploy App Image to ECR"){
+                                        steps{
+                                                script {
+                                                        docker.withRegistry("https://320183397498.dkr.ecr.us-east-1.amazonaws.com/kozidevopsregistry","ecr:us-east-1:awscreds"){
+                                                                app.push()
+                                                        }
+                                                }
+                                        }
+                                }
 
                 }
                 post {
