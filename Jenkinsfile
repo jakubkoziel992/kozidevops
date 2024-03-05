@@ -87,7 +87,8 @@ pipeline{
                                         steps{
                                                 script {
                                                         docker.withRegistry(registryUrl,awsCredential){
-                                                                app.push()
+                                                                app.push("$BUILD_ID")
+								app.push("latest")
                                                         }
                                                 }
                                         }
