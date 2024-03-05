@@ -4,6 +4,13 @@ pipeline{
                 maven "MAVEN3"
                 jdk "OracleJDK21"
         }
+
+	environment {
+		awsCredential = "ecr:us-east-1:awscreds"
+		appRegistry = "320183397498.dkr.ecr.us-east-1.amazonaws.com/kozidevopsregistry"
+		registryUrl = "https://320183397498.dkr.ecr.us-east-1.amazonaws.com"
+	}
+
         stages{
                 stage("Fetch Code"){
                         steps{
@@ -70,7 +77,7 @@ pipeline{
                 stage ("Build App Image") {
                         steps {
                                 script{
-                                        app = docker.build("320183397498.dkr.ecr.us-east-1.amazonaws.com/kozidevopsregistry:${env.BUILD_ID}"  ,"./app/")
+                                        app = docker.build("${env.appRegistry}:${env.BUILD_ID}"  ,"./app/")
                                       }
 
                                 }
@@ -79,7 +86,7 @@ pipeline{
                                 stage ("Deploy App Image to ECR"){
                                         steps{
                                                 script {
-                                                        docker.withRegistry("https://320183397498.dkr.ecr.us-east-1.amazonaws.com/kozidevopsregistry","ecr:us-east-1:awscreds"){
+                                                        docker.withRegistry(registryUrl,awsCredential){
                                                                 app.push()
                                                         }
                                                 }
